@@ -2,15 +2,16 @@
 #pragma once
 
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class Form;
+class AForm;
 
 # define RESET	"\033[0m"
 # define RED 	"\033[31m"
 # define GREEN  "\033[32m"
 # define BLUE   "\033[34m"
 # define YELLOW	"\033[33m"
+# define MAGENTA "\033[35m"
 
 class	Bureaucrat
 {
@@ -44,7 +45,8 @@ class	Bureaucrat
         void		incrementGrade( void );
         void		decrementGrade( void );
         void		setGrade( int grade );
-		void		signForm( Form & form );
+		void		signForm( AForm & src );
+		void		executeForm( AForm const & form);
 		// Operators overload
 		Bureaucrat & operator=(Bureaucrat const & src);
 		friend std::ostream & operator<<(std::ostream & out, const Bureaucrat & src);

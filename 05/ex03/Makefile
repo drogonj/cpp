@@ -1,6 +1,10 @@
-NAME  = Form
+NAME  = Interns
 
-SRCS  = main.cpp Bureaucrat.cpp Form.cpp
+SRCS  = srcs/main.cpp srcs/Bureaucrat.cpp \
+		srcs/AForm.cpp srcs/ShrubberyCreationForm.cpp \
+		srcs/RobotomyRequestForm.cpp \
+		srcs/PresidentialPardonForm.cpp \
+		srcs/Intern.cpp
 
 OBJS  = $(SRCS:.cpp=.o)
 

@@ -1,4 +1,6 @@
 
+#pragma once
+
 #include <iostream>
 
 # define RESET	"\033[0m"
@@ -36,7 +38,9 @@ class	Bureaucrat
 		// Functions
 		std::string	getName( void );
 		int			getGrade( void );
-        void		setGrade(int grade);
+        void		incrementGrade( void );
+        void		decrementGrade( void );
+        void		setGrade( int grade );
 		// Operators overload
 		Bureaucrat & operator=(Bureaucrat const & src);
 		friend std::ostream & operator<<(std::ostream & out, const Bureaucrat & src);
