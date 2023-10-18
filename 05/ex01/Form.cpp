@@ -25,9 +25,24 @@ Form::~Form(void)
 	std::cout << RED << "Form destructor called" << RESET << std::endl;
 }
 
-const std::string & Form::getName(void)
+const std::string & Form::getName(void) const
 {
 	return (this->_name);
+}
+
+int	Form::getRequiredGradeToSign(void) const
+{
+    return (this->_requiredGradeToSign);
+}
+
+int	Form::getRequiredGradeToExecute(void) const
+{
+    return (this->_requiredGradeToExec);
+}
+
+bool Form::isSigned(void) const
+{
+    return (this->_isSigned);
 }
 
 void	Form::beSigned(const Bureaucrat & src)
@@ -45,10 +60,10 @@ Form & Form::operator=(const Form &src)
 
 std::ostream & operator<<(std::ostream & out, const Form & src)
 {
-	out << "Form \"" << src._name << "\" ";
-	src._isSigned ? out << "is signed." : out << "is not signed." << std::endl;
-	out << "A grade of " << src._requiredGradeToSign << " is required to sign it." << std::endl;;
-	out << "A grade of " << src._requiredGradeToExec << " is required to execute it.";
+	out << "Form \"" << src.getName() << "\" ";
+	src.isSigned() ? out << "is signed." : out << "is not signed." << std::endl;
+	out << "A grade of " << src.getRequiredGradeToSign() << " is required to sign it." << std::endl;;
+	out << "A grade of " << src.getRequiredGradeToExecute() << " is required to execute it.";
 	return (out);
 }
 

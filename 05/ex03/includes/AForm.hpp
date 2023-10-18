@@ -31,7 +31,6 @@ class AForm
 
 		//Operators
 		AForm & operator=(AForm const & src);
-		friend std::ostream & operator<<(std::ostream & out, const AForm & src);
 
 		// Exceptions
 		class	GradeTooLowException : public std::exception
@@ -56,3 +55,5 @@ class AForm
 			}
 		};
 };
+
+std::ostream & operator<<(std::ostream & out, const AForm & src);

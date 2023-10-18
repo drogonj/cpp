@@ -47,5 +47,6 @@ class	Bureaucrat
 		void		signForm( Form & form );
 		// Operators overload
 		Bureaucrat & operator=(Bureaucrat const & src);
-		friend std::ostream & operator<<(std::ostream & out, const Bureaucrat & src);
 };
+
+std::ostream & operator<<(std::ostream & out, const Bureaucrat & src);

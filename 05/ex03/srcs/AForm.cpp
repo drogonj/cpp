@@ -65,10 +65,10 @@ AForm & AForm::operator=(const AForm &src)
 
 std::ostream & operator<<(std::ostream & out, const AForm & src)
 {
-	out << "Form \"" << src._name << "\" ";
-	src._isSigned ? out << "is signed." : out << "is not signed." << std::endl;
-	out << "A grade of " << src._requiredGradeToSign << " is required to sign it." << std::endl;;
-	out << "A grade of " << src._requiredGradeToExec << " is required to execute it.";
-	return (out);
+    out << "Form \"" << src.getName() << "\" ";
+    src.isSigned() ? out << "is signed." : out << "is not signed." << std::endl;
+    out << "A grade of " << src.getRequiredGradeToSign() << " is required to sign it." << std::endl;;
+    out << "A grade of " << src.getRequiredGradeToExecute() << " is required to execute it.";
+    return (out);
 }
 

@@ -1,6 +1,5 @@
 
 #include "../includes/Bureaucrat.hpp"
-#include "../includes/AForm.hpp"
 #include "../includes/ShrubberyCreationForm.hpp"
 #include "../includes/RobotomyRequestForm.hpp"
 #include "../includes/PresidentialPardonForm.hpp"
@@ -20,7 +19,7 @@ int main(void)
 		std::cout << std::endl;
 		std::cout << greenpeace << std::endl; // Print form's info
 		std::cout << std::endl;
-		bob.signForm(greenpeace); // Try to sign form "greenpisse"
+		bob.signForm(greenpeace); // Try to sign form "greenpeace"
 		std::cout << std::endl;
 		bob.executeForm(greenpeace);
 		std::cout << std::endl;
@@ -30,7 +29,7 @@ int main(void)
 		std::cout << std::endl;
 		std::cout << pdg << std::endl; // Display Bureaucrat's info
 		std::cout << std::endl;
-		pdg.executeForm(greenpeace); // Execute form "greenpisse"
+		pdg.executeForm(greenpeace); // Execute form "greenpeace"
 		std::cout << std::endl;
 
 		std::cout << std::endl;

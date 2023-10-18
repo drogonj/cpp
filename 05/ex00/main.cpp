@@ -14,8 +14,8 @@ int main(void)
     std::cout << Louis.getGrade() << std::endl;
 	std::cout << Louis << std::endl;
 	std::cout << std::endl;
-	std::cout << "Changing Louis's grade to 150" << std::endl;
-	Louis.setGrade(150);
+	std::cout << "Changing Louis's grade to 10" << std::endl;
+	Louis.setGrade(10);
 	std::cout << Louis << std::endl;
 	std::cout << std::endl;
 	std::cout << "Trying to increment Louis's grade..." << std::endl;

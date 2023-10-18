@@ -2,9 +2,8 @@
 #pragma once
 
 #include "AForm.hpp"
-#include <thread>
-#include <chrono>
-#include <random>
+#include <cstdlib>
+#include <ctime>
 
 class RobotomyRequestForm : public AForm
 {

@@ -34,17 +34,13 @@ void RobotomyRequestForm::execute(const Bureaucrat &src) const
 		throw FormNotSigned();
 
 	std::cout << BLUE << "*Brrrrrrrrrrrrt*" << RESET << std::endl;
-	std::this_thread::sleep_for(std::chrono::seconds(1));
 	std::cout << BLUE << "*Brrrt Brrt*" << RESET << std::endl;
-	std::this_thread::sleep_for(std::chrono::seconds(1));
 
-	std::random_device					rand;	// Initialise le generateur de nb aleatoire
-	std::mt19937 						generator(rand()); // Genere le nb aleatoire
-	std::uniform_int_distribution<int>	distribution(0, 100); // Redistribue le resultat dans une tranche de nombre
+    std::srand(static_cast<unsigned>(std::time(0)));
+    int randomNbr = std::rand();
+    int randomRes = (randomNbr % 101);
 
-	int									res = distribution(generator);
-
-	if (res >= 50)
+	if (randomRes >= 50)
 		std::cout << BLUE << this->_target << " has been successfully robotomized" << RESET << std::endl;
 	else
 		std::cout << BLUE << this->_target << " robotomization has failed" << RESET << std::endl;

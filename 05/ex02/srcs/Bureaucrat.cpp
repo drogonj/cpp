@@ -80,6 +80,6 @@ Bureaucrat & Bureaucrat::operator=(Bureaucrat const & src)
 
 std::ostream & operator<<(std::ostream & out, const Bureaucrat & src)
 {
-	out << src._name << ", bureaucrat grade " << src._grade << ".";
+	out << src.getName() << ", bureaucrat grade " << src.getGrade() << ".";
 	return (out);
 }

@@ -22,12 +22,12 @@ Bureaucrat::~Bureaucrat(void)
     std::cout << RED << "Bureaucrat destructor called" << RESET << std::endl;
 }
 
-std::string Bureaucrat::getName(void)
+std::string Bureaucrat::getName(void) const
 {
     return (this->_name);
 }
 
-int  Bureaucrat::getGrade(void)
+int  Bureaucrat::getGrade(void) const
 {
     return (this->_grade);
 }
@@ -59,6 +59,6 @@ Bureaucrat & Bureaucrat::operator=(Bureaucrat const & src)
 
 std::ostream & operator<<(std::ostream & out, const Bureaucrat & src)
 {
-	out << src._name << ", bureaucrat grade " << src._grade << ".";
+	out << src.getName() << ", bureaucrat grade " << src.getGrade() << ".";
 	return (out);
 }

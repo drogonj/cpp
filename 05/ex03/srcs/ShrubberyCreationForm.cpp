@@ -34,7 +34,7 @@ void ShrubberyCreationForm::execute(const Bureaucrat & src) const
 		throw FormNotSigned();
 
 	std::string		filename = this->_target + "_shrubbery";
-	std::ofstream	file(filename);
+	std::ofstream	file(filename.c_str());
 
 	if (!file.is_open())
 		throw shrubberyPlantingError();

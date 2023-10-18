@@ -36,12 +36,13 @@ class	Bureaucrat
         Bureaucrat( const Bureaucrat & src );
 		~Bureaucrat( void );
 		// Functions
-		std::string	getName( void );
-		int			getGrade( void );
+		std::string	getName( void ) const;
+		int			getGrade( void ) const;
         void		incrementGrade( void );
         void		decrementGrade( void );
         void		setGrade( int grade );
 		// Operators overload
 		Bureaucrat & operator=(Bureaucrat const & src);
-		friend std::ostream & operator<<(std::ostream & out, const Bureaucrat & src);
 };
+
+std::ostream & operator<<(std::ostream & out, const Bureaucrat & src);

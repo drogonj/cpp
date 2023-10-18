@@ -35,9 +35,13 @@ class Form
 		Form(const Form & src);
 		~Form(void);
 		//Functions
-		const std::string & getName(void);
+		const std::string & getName(void) const;
+        int	getRequiredGradeToSign(void) const;
+        int	getRequiredGradeToExecute(void) const;
+        bool isSigned(void) const;
 		void beSigned(const Bureaucrat & src);
 		//Operators
 		Form & operator=(Form const & src);
-		friend std::ostream & operator<<(std::ostream & out, const Form & src);
 };
+
+std::ostream & operator<<(std::ostream & out, const Form & src);
