@@ -170,3 +170,9 @@ void ScalarConverter::convert(const std::string & str)
     else if (!pseudoLiteral(str))
         std::cerr << RED << "Non-recognized or non-supported format" << RESET << std::endl;
 }
+
+ScalarConverter & ScalarConverter::operator=(const ScalarConverter &src)
+{
+    (void)src;
+    return (*this);
+}

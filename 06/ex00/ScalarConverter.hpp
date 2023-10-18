@@ -13,9 +13,6 @@
 # define YELLOW	"\033[33m"
 # define MAGENTA "\033[35m"
 
-// Todod
-// operator =
-
 class ScalarConverter
 {
 private:
@@ -31,4 +28,6 @@ public:
     ~ScalarConverter(void) { }
 
     static void convert(const std::string & str);
+
+    ScalarConverter & operator=(const ScalarConverter & src);
 };
