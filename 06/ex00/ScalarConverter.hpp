@@ -2,13 +2,9 @@
 #pragma once
 
 #include <iostream>
-#include <cstring>
 #include <climits>
 #include <cstdlib>
-#include <cfloat>
-#include <typeinfo>
-#include <exception>
-#include <iomanip>
+#include <cmath>
 
 # define RESET	"\033[0m"
 # define RED 	"\033[31m"
