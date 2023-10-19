@@ -6,10 +6,10 @@
 class Data
 {
 public:
-    Data(void);
-    Data(std::string str);
-    Data(const Data & src);
-    ~Data(void);
+    Data(void) {};
+    Data(std::string str) : str(str) {};
+    Data(const Data & src) : str(src.str) {};
+    ~Data(void) {};
 
     std::string str;
 

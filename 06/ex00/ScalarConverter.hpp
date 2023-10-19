@@ -5,6 +5,7 @@
 #include <climits>
 #include <cstdlib>
 #include <cmath>
+#include <iomanip>
 
 # define RESET	"\033[0m"
 # define RED 	"\033[31m"

@@ -59,8 +59,8 @@ void ScalarConverter::convertChar(const char c)
     else
         std::cout << BLUE << "'" << c << "'" << RESET << std::endl;
     std::cout << GREEN << "int: " << BLUE << static_cast<int>(c) << RESET << std::endl;
-    std::cout << GREEN << "float: " << BLUE << static_cast<int>(c) << ".0f" << RESET << std::endl;
-    std::cout << GREEN << "double: " << BLUE << static_cast<int>(c) << ".0" << RESET << std::endl;
+    std::cout << GREEN << "float: " << BLUE << static_cast<float>(c) << ".0f" << RESET << std::endl;
+    std::cout << GREEN << "double: " << BLUE << static_cast<double>(c) << ".0" << RESET << std::endl;
 }
 
 void ScalarConverter::convertInt(const int n)
@@ -73,14 +73,13 @@ void ScalarConverter::convertInt(const int n)
     else
         std::cout << BLUE << "'" << static_cast<char>(n) << "'" << RESET << std::endl;
     std::cout << GREEN << "int: " << BLUE << n << std::endl;
-    std::cout << GREEN << "float: " << BLUE << n << ".0f" << RESET << std::endl;
-    std::cout << GREEN << "double: " << BLUE << n << ".0" << RESET << std::endl;
+    std::cout << GREEN << "float: " << BLUE << static_cast<float>(n) << ".0f" << RESET << std::endl;
+    std::cout << GREEN << "double: " << BLUE << static_cast<double>(n) << ".0" << RESET << std::endl;
 }
 
-void ScalarConverter::convertFloat(const float f, const std::string & str)
-{
+void ScalarConverter::convertFloat(const float f, const std::string & str) {
     double toD;
-    double  rounded;
+    double rounded;
 
     std::cout << GREEN << "char: ";
     if (f < 32 || f == 127)
@@ -91,12 +90,12 @@ void ScalarConverter::convertFloat(const float f, const std::string & str)
         std::cout << BLUE << "'" << static_cast<char>(f) << "'" << RESET << std::endl;
     std::cout << GREEN << "int: " << BLUE << static_cast<int>(f) << RESET << std::endl;
     rounded = round(f * std::pow(10, 5)) / std::pow(10, 5);
-    if (rounded == static_cast<int>(f))
+    if (rounded == static_cast<int>(f) && str[str.length() - 2] <= '5' && f >= 0.00009f)
         std::cout << GREEN << "float: " << BLUE << f << ".0f" << RESET << std::endl;
     else
         std::cout << GREEN << "float: " << BLUE << f << "f" << RESET << std::endl;
     toD = std::strtold(str.c_str(), NULL);
-    if (rounded == static_cast<int>(f))
+    if (rounded == static_cast<int>(f) && str[str.length() - 2] <= '5' && f >= 0.00009f)
         std::cout << GREEN << "double: " << BLUE << toD << ".0" << RESET << std::endl;
     else
         std::cout << GREEN << "double: " << BLUE << toD << RESET << std::endl;
@@ -116,13 +115,12 @@ void ScalarConverter::convertDouble(const double d, const std::string & str)
         std::cout << BLUE << "'" << static_cast<char>(d) << "'" << RESET << std::endl;
     std::cout << GREEN << "int: " << BLUE << static_cast<int>(d) << RESET << std::endl;
     toF = std::strtof(str.c_str(), NULL);
-    rounded = round(d * std::pow(10, 5)) / std::pow(10, 5);
-    std::cout << rounded << std::endl;
-    if (rounded == static_cast<int>(d))
+    rounded = floor(d * std::pow(10, 5)) / std::pow(10, 5);
+    if (rounded == static_cast<int>(d) && str[str.length() - 1] <= '5' && d >= 0.00009)
         std::cout << GREEN << "float: " << BLUE << toF << ".0f" << RESET << std::endl;
     else
         std::cout << GREEN << "float: " << BLUE << toF << "f" << RESET << std::endl;
-    if (rounded == static_cast<int>(d))
+    if (rounded == static_cast<int>(d) && str[str.length() - 1] <= '5' && d >= 0.00009)
         std::cout << GREEN << "double: " << BLUE << d << ".0" << RESET << std::endl;
     else
         std::cout << GREEN << "double: " << BLUE << d << RESET << std::endl;
