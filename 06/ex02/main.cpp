@@ -17,5 +17,6 @@ int main(void)
 
     delete p;
     delete &r;
+
     return (0);
 }

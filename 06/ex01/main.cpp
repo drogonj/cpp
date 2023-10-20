@@ -36,7 +36,8 @@ int main(void)
         std::cout << "-- Deserializing Data --" << std::endl;
         Data            *d2 = s.deserialize(r);
         std::cout << GREEN << "d2.str: " << BLUE << d2->str << RESET << std::endl;
-        std::cout << GREEN << "&2d: " << BLUE << &d2 << RESET << std::endl;
+        std::cout << GREEN << "&2d: " << BLUE << d2 << RESET << std::endl;
+
     }
 
 

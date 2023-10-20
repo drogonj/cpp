@@ -8,12 +8,12 @@
 class   Serializer
 {
 public:
-    Serializer(void);
-    Serializer(const Serializer & src);
-    ~Serializer(void);
+    Serializer(void) {};
+    Serializer(const Serializer & src) { (void)src; }
+    ~Serializer(void) {};
 
     static uintptr_t serialize(Data *ptr);
     static Data * deserialize(uintptr_t raw);
 
-    Serializer & operator=(const Serializer & src);
+    Serializer & operator=(const Serializer & src) { (void)src; return (*this); }
 };
