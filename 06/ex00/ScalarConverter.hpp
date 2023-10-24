@@ -17,6 +17,9 @@
 class ScalarConverter
 {
 private:
+    ScalarConverter(void) { }
+    ScalarConverter(const ScalarConverter &src) { *this = src; }
+
     static void convertChar(const char c);
     static void convertInt(const int n);
     static void convertFloat(const float f, const std::string & str);
@@ -24,8 +27,6 @@ private:
     static bool pseudoLiteral(const std::string & str);
 
 public:
-    ScalarConverter(void) { }
-    ScalarConverter(const ScalarConverter &src) { *this = src; }
     ~ScalarConverter(void) { }
 
     static void convert(const std::string & str);
