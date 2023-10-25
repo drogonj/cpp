@@ -41,5 +41,15 @@ int main(void)
         } catch (std::exception &e) {
             std::cout << YELLOW << e.what() << RESET << std::endl;
         }
+
+        // Testing operator =
+        std::cout << BLUE << "Testing operator \'=\':" << RESET << std::endl;
+        Array<int>  arr2 = arr;
+        std::cout << GREEN << "Array<int>  arr2 = arr;" << RESET << std::endl;
+        std::cout << GREEN << "&arr[0]: " << &arr[0] << " &arr2[0]: " << &arr2[0] << RESET << std::endl;
+        for (int i = 0; i < 10; i++)
+            std::cout << GREEN << arr[i] << ' ' << RESET;
+        std::cout << std::endl;
     }
 }
+

@@ -23,15 +23,15 @@ public:
     // Constructors, destructors
     Array(void) : _len(0), _array(0) {}
     Array(unsigned int n) : _len(n) { this->_array = new A[n]; }
-    Array(const Array & src) {
-        if (this->_len > 0)
-            delete [] this->_array;
-        this->_len = src._len;
-        this->_array = new A[src._len];
-        for (unsigned int i = 0; i < src._len; i++)
-            this->_array = src._array;
+    Array(const Array & src) : _len(0), _array(0) {
+        if (src._len > 0) {
+            this->_len = src._len;
+            this->_array = new A[src._len];
+            for (unsigned int i = 0; i < src._len; i++)
+                this->_array[i] = src._array[i];
+        }
     }
-    ~Array(void) { delete [] this->_array; }
+    ~Array(void) { if (this->_array) {delete [] this->_array; this->_array = NULL; } }
 
     //Functions
     unsigned int size(void) const { return(this->_len); }
@@ -47,10 +47,12 @@ public:
 
     //Operators overloads
     Array & operator=(const Array & src) {
-        this->_len = src._len;
-        this->_array = new A[src._len];
-        for (unsigned int i = 0; i < src._len; i++)
-            this->_array = src._array;
+        if (&src != this && src._len > 0) {
+            this->_len = src._len;
+            this->_array = new A[src._len];
+            for (unsigned int i = 0; i < src._len; i++)
+                this->_array[i] = src._array[i];
+        }
         return (*this);
     }
     A & operator[](unsigned int index) {

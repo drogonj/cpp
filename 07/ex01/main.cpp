@@ -11,7 +11,6 @@ int main(void)
 {
     char str[] = "bonjour";
     int  nTab[] = {0, 1, 2, 3, 4, 5, 6};
-    std::string strs[] = {"bonsoir", "oui", "ok"};
 
     iter<char>(str, 7, &inc);
     std::cout << str << std::endl;
