@@ -16,7 +16,6 @@
 template<typename T>
 int easyfind(T & c, int o)
 {
-    (void)o;
     typename T::iterator    it = c.begin();
     typename T::iterator    end = c.end();
     for ( ; it != end; ++it) {
