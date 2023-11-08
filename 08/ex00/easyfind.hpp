@@ -2,6 +2,7 @@
 #pragma once
 
 #include <iostream>
+#include <algorithm>
 #include <vector>
 #include <map>
 #include <list>
@@ -16,11 +17,11 @@
 template<typename T>
 int easyfind(T & c, int o)
 {
-    typename T::iterator    it = c.begin();
-    typename T::iterator    end = c.end();
-    for ( ; it != end; ++it) {
-        if (*it == o)
-            return (std::distance(c.begin(), it));
+    typename T::iterator it = std::find(c.begin(), c.end(), o);
+
+    if (it == c.end()) {
+        return (-1);
+    } else {
+        return (std::distance(c.begin(), it));
     }
-    return (-1);
 }

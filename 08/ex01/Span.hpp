@@ -1,0 +1,40 @@
+
+#pragma once
+
+#include <iostream>
+#include <vector>
+#include <exception>
+#include <algorithm>
+
+class Span {
+private:
+    const unsigned int  _N;
+    std::vector<int>    _V;
+
+public:
+    //Constructors / Destructors
+    Span(void);
+    Span(const unsigned int n);
+    Span(const Span & src);
+    ~Span(void);
+
+    //Functions
+    int getN(void) const;
+    const std::vector<int> & getV(void);
+    void displayV(void);
+    void addNumber(const int n);
+    int shortestSpan(void);
+    int longestSpan(void);
+
+    // Exceptions
+    class   maximumReached : public std::exception {
+        const char * what(void) const throw() {
+            return ("Maximum number of elements reached");
+        }
+    };
+    class   tooFewElements : public std::exception {
+        const char * what(void) const throw() {
+            return ("Too few elements in the span container");
+        }
+    };
+};
