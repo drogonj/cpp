@@ -8,7 +8,7 @@
 
 class Span {
 private:
-    const unsigned int  _N;
+    unsigned int        _N;
     std::vector<int>    _V;
 
 public:
@@ -23,6 +23,7 @@ public:
     const std::vector<int> & getV(void);
     void displayV(void);
     void addNumber(const int n);
+    void addNumbers(const int *args, int length);
     int shortestSpan(void);
     int longestSpan(void);
 
@@ -37,4 +38,7 @@ public:
             return ("Too few elements in the span container");
         }
     };
+
+    //Operators overloads
+    Span & operator=(const Span & src);
 };

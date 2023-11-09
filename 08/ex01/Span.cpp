@@ -3,7 +3,7 @@
 
 Span::Span(void) : _N(5) { }
 Span::Span(const unsigned int n) : _N(n) { }
-Span::Span(const Span &src) : _N(src.getN()) { }
+Span::Span(const Span &src) : _N(src._N), _V(src._V){ }
 Span::~Span(void) { }
 
 int Span::getN(void) const {
@@ -28,20 +28,23 @@ void Span::addNumber(const int n) {
     this->_V.push_back(n);
 }
 
+void Span::addNumbers(const int *args, int length) {
+    for (int i = 0; i < length; i++) {
+        if (this->_V.size() >= this->_N)
+            throw maximumReached();
+        this->_V.push_back(args[i]);
+    }
+}
+
 int Span::shortestSpan(void) {
     if (this->_V.size() <= 1)
         throw tooFewElements();
     std::vector<int> cpy(this->_V);
     std::sort(cpy.begin(), cpy.end());
-    int shortest;
     std::vector<int>::iterator it = cpy.begin();
-    *it > *(it + 1) ? shortest = *it - *(it + 1) : shortest = *(it + 1) - *it;
+    int shortest = *(it + 1) - *it;
     for ( ; std::distance(it, cpy.end()) > 1; ++it) {
-        if (it > it + 1) {
-            *it - *(it + 1) < shortest ? shortest = *it - *(it + 1) : 0 ;
-        } else {
             *(it + 1) - *it < shortest ? shortest = *(it + 1) - *it : 0 ;
-        }
     }
     return (shortest);
 }
@@ -52,4 +55,12 @@ int Span::longestSpan(void) {
     std::vector<int>::iterator max = std::max_element(this->_V.begin(), this->_V.end());
     std::vector<int>::iterator min = std::min_element(this->_V.begin(), this->_V.end());
     return (*max - *min);
+}
+
+Span & Span::operator=(const Span &src){
+    if (&src != this) {
+        this->_N = src._N;
+        this->_V = src._V;
+    }
+    return (*this);
 }
