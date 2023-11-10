@@ -1,4 +1,4 @@
-NAME  = easyfind
+NAME  = mutation
 
 SRCS  = main.cpp
 

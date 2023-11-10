@@ -24,6 +24,13 @@ public:
     void displayV(void);
     void addNumber(const int n);
     void addNumbers(const int *args, int length);
+    template <typename T>
+    void addNumbers(T begin, T end) {
+        T it = begin;
+        for ( ; it != end; it++) {
+            addNumber(*it);
+        }
+    }
     int shortestSpan(void);
     int longestSpan(void);
 
