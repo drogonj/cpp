@@ -6,23 +6,17 @@ int main(int argc, char **argv) {
         std::cerr << MAGENTA << "usage: \"./btc <input.txt/csv/...>\"" << RESET << std::endl;
         return (-1);
     }
-    std::ifstream file(argv[1]);
-    if (!file.is_open()) {
-        std::cerr << YELLOW << "error: can't open file" << RESET << std::endl;
-        return (-1);
-    }
     BitcoinExchange btc;
     try {
         btc.loadDataBase();
     } catch (std::exception &e) {
-        std::cout << YELLOW << e.what() << RESET << std::endl;
+        std::cerr << YELLOW << "database: " << e.what() << RESET << std::endl;
         return (-1);
     }
     try {
-        btc.exec();
+        btc.exec(argv[1]);
     } catch (std::exception &e) {
         std::cout << YELLOW << e.what() << RESET << std::endl;
         return (-1);
     }
-    file.close();
 }

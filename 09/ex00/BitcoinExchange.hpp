@@ -18,11 +18,11 @@
 
 class BitcoinExchange {
 private:
-    std::map<int, float> _input;
-    std::map<int, float> _dataBase;
+    std::map<long int, float> _input;
+    std::map<long int, float> _dataBase;
 
     // Functions
-    int toDate(std::string year, std::string month, std::string day);
+    long int toDate(std::string year, std::string month, std::string day);
 
 public:
     // Constructors / Destructors
@@ -32,7 +32,7 @@ public:
 
     // Functions
     void loadDataBase(void);
-    void exec(void);
+    void exec(char * filename);
 
     // Operators overloads
     BitcoinExchange & operator=(const BitcoinExchange & src);
@@ -43,14 +43,24 @@ public:
             return ("error: failed to load database");
         }
     };
-    class formatErrorInDatabase : public std::exception {
+    class formatError : public std::exception {
         const char * what(void) const throw() {
-            return ("error: wrong format in database");
+            return ("error: wrong date format");
         }
     };
-    class invalidDateInDatabase : public std::exception {
+    class invalidDate : public std::exception {
         const char * what(void) const throw() {
-            return ("error: invalid date in database");
+            return ("error: invalid date");
+        }
+    };
+    class failedToLoadInputFile : public std::exception {
+        const char * what(void) const throw() {
+            return ("error: failed to load input file");
+        }
+    };
+    class invalidValue : public std::exception {
+        const char * what(void) const throw() {
+            return ("error: value can't be negative");
         }
     };
 };
