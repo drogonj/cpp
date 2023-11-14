@@ -7,8 +7,6 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange & src) : _input(src._inpu
 
 BitcoinExchange::~BitcoinExchange(void) { }
 
-
-
 long int BitcoinExchange::toDate(std::string year, std::string month, std::string day) {
     std::string all = year + month + day;
     if (all.length() > 8)
@@ -26,10 +24,10 @@ long int BitcoinExchange::toDate(std::string year, std::string month, std::strin
         throw invalidDate();
     if (dday < 1 || dday > dayPerMonth[dmonth - 1])
         throw  invalidDate();
-    long int res = ((dyear * 10000) + (dmonth) * 100) + dday);
-    if (res < 20090201)
-        throw invalidDate();
-    return (((dyear * 10000) + (dmonth) * 100) + dday);
+    long int res = ((dyear * 10000) + (dmonth) * 100) + dday;
+    if (res < 20090102)
+        throw dateTooLow();
+    return (res);
 }
 
 void BitcoinExchange::loadDataBase(void) {
@@ -43,10 +41,12 @@ void BitcoinExchange::loadDataBase(void) {
         std::string line;
         std::getline(fd, line);
         if (line != "date,exchange_rate")
-            throw formatError();
+            throw wrongHeaderDataBase();
         while (std::getline(fd, line)) {
             try {
                 date = toDate(line.substr(0, 4), line.substr(5, 2), line.substr(8, 2));
+                if (line.substr(4, 1) != "-" || line.substr(7, 1) != "-")
+                    throw formatError();
                 strvalue = line.substr(10);
                 if (strvalue[0] != ',')
                     throw formatError();
@@ -66,31 +66,43 @@ void BitcoinExchange::exec(char * filename) {
     std::string     line;
     int             date;
     std::string     strvalue;
-    int             value;
+    float           value;
 
     if (!file.is_open()) {
         throw failedToLoadInputFile();
     }
     std::getline(file, line);
     if (line != "date | value")
-        throw formatError();
+        throw wrongHeaderInput();
     while (std::getline(file, line)) {
         try {
+            if (!line.size())
+                continue;
+            else if (line.size() < 14)
+                throw formatError();
             date = toDate(line.substr(0, 4), line.substr(5, 2), line.substr(8, 2));
-            if (line.substr(10, 3) != " | ")
+            if (line.substr(10, 3) != " | " || line.substr(4, 1) != "-" || line.substr(7, 1) != "-")
                 throw formatError();
             strvalue = line.substr(13);
-            if (strvalue.empty())
-                throw formatError();
+            bool dot_encountered = false;
+            for (int i = 0; strvalue[i]; i++) {
+                if (strvalue[i] < '0' || strvalue[i] > '9') {
+                    if (strvalue[i] == '.' && !dot_encountered) {
+                        dot_encountered = true;
+                    } else {
+                        throw invalidValue();
+                    }
+                }
+            }
             value = strtod(strvalue.c_str(), 0);
-            if (value < 0)
-                throw invalidValue();
+            if (value > 1000)
+                throw tooLargeValue();
             for (std::map<long int, float>::iterator it = this->_dataBase.begin(); it != this->_dataBase.end(); it++) {
                 if (date == it->first) {
                     std::cout << GREEN << line.substr(0, 10) << " ➔ " << value << " = " << value * it->second << RESET << std::endl;
                     break;
                 } else if (date < it->first) {
-                    std::cout << GREEN << "moin" << RESET << std::endl;
+                    std::cout << GREEN << line.substr(0, 10) << " ➔ " << value << " = " << value * (it--)->second << RESET << std::endl;
                     break;
                 }
             }

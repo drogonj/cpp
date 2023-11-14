@@ -48,9 +48,24 @@ public:
             return ("error: wrong date format");
         }
     };
+    class wrongHeaderInput : public std::exception {
+        const char * what(void) const throw() {
+            return ("error: first line must be \"date | value\"");
+        }
+    };
+    class wrongHeaderDataBase : public std::exception {
+        const char * what(void) const throw() {
+            return ("error: first line must be \"date,exchange_rate\"");
+        }
+    };
     class invalidDate : public std::exception {
         const char * what(void) const throw() {
             return ("error: invalid date");
+        }
+    };
+    class dateTooLow : public std::exception {
+        const char * what(void) const throw() {
+            return ("error: invalid date (bitcoin started in 2009)");
         }
     };
     class failedToLoadInputFile : public std::exception {
@@ -60,7 +75,17 @@ public:
     };
     class invalidValue : public std::exception {
         const char * what(void) const throw() {
-            return ("error: value can't be negative");
+            return ("error: invalid value");
+        }
+    };
+    class tooLargeValue : public std::exception {
+        const char * what(void) const throw() {
+            return ("error: value too large");
+        }
+    };
+    class negativeNumber : public std::exception {
+        const char * what(void) const throw() {
+            return ("error: negative number aren't allowed");
         }
     };
 };
