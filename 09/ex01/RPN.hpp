@@ -27,7 +27,7 @@ public:
     RPN(void);
     ~RPN(void);
 
-    float calculate(char * arg);
+    double calculate(char * arg);
 
     class badCalc : public std::exception {
         const char * what(void) const throw() {

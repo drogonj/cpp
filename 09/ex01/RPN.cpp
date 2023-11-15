@@ -43,7 +43,7 @@ char * RPN::doOp(char *arg) {
     return (&arg[i]);
 }
 
-float RPN::calculate(char *arg) {
+double RPN::calculate(char *arg) {
     if (strlen(arg) < 5)
         throw badCalc();
     arg = fillStack(arg);
