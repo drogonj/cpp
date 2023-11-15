@@ -22,9 +22,9 @@ char * RPN::doOp(char *arg) {
             continue;
         if (this->s.size() < 2)
             throw badCalc();
-        float second = this->s.top();
+        double second = this->s.top();
         this->s.pop();
-        float first = this->s.top();
+        double first = this->s.top();
         this->s.pop();
         if (arg[i] == '+')
             this->s.push(first + second);
@@ -59,7 +59,7 @@ double RPN::calculate(char *arg) {
     }
     if (this->s.size() != 1 || strlen(arg) > 0)
         throw badCalc();
-    float res = this->s.top();
+    double res = this->s.top();
     return (res);
 }
 
