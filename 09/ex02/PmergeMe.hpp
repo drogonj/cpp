@@ -26,7 +26,7 @@ private:
 
     void lstSort(std::list<int> & lst, std::list<int>::iterator left, std::list<int>::iterator right);
     void lstMerge(std::list<int>::iterator left, std::list<int>::iterator middle, std::list<int>::iterator right);
-    void lstInsertion(std::list<int> & lst, std::list<int>::iterator left, std::list<int>::iterator right);
+    void lstInsertion(std::list<int>::iterator left, std::list<int>::iterator right);
 
 public:
     PmergeMe(void);

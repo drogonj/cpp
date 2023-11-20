@@ -97,8 +97,9 @@ void BitcoinExchange::exec(char * filename) {
             value = strtod(strvalue.c_str(), 0);
             if (value > 1000)
                 throw tooLargeValue();
-            for (std::map<long int, float>::iterator it = this->_dataBase.begin(); it != this->_dataBase.end(); it++) {
-                if (date == it->first) {
+            int id = 0;
+            for (std::map<long int, float>::iterator it = this->_dataBase.begin(); it != this->_dataBase.end(); it++, id++) {
+                if (date == it->first || id == static_cast<int>(this->_dataBase.size()) - 1) {
                     std::cout << GREEN << line.substr(0, 10) << " ➔ " << value << " = " << value * it->second << RESET << std::endl;
                     break;
                 } else if (date < it->first) {
